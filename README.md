@@ -76,7 +76,33 @@ supabase migration repair 002 --status applied
 
 ### 4. Enable Google OAuth
 
-In Supabase: **Authentication → Providers → Google** — enable and add your OAuth credentials.
+#### 4a. Google Cloud Console
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a project or select an existing one
+3. Open **APIs & Services → Credentials**
+4. Click **Create Credentials → OAuth client ID**
+5. If prompted, configure the **OAuth consent screen**:
+   - User type: **External** (for anyone with a Google account)
+   - App name, user support email, developer contact
+   - Scopes: add `openid`, `.../auth/userinfo.email`, `.../auth/userinfo.profile` (email and profile are usually default)
+6. Back in **Credentials**, create **OAuth client ID**:
+   - Application type: **Web application**
+   - Name: e.g. "Stock Portfolio"
+   - **Authorized JavaScript origins**:
+     - `http://localhost:5173` (local dev)
+     - `https://your-app.vercel.app` (production, add after deploy)
+   - **Authorized redirect URIs**:
+     - `https://YOUR_PROJECT_REF.supabase.co/auth/v1/callback`  
+       (Replace `YOUR_PROJECT_REF` with your Supabase project ref from **Settings → General**)
+7. Click **Create** and copy the **Client ID** and **Client Secret**
+
+#### 4b. Supabase
+
+1. In Supabase: **Authentication → Providers → Google**
+2. Enable the provider
+3. Paste **Client ID** and **Client Secret**
+4. Save
 
 ### 5. Environment variables
 
