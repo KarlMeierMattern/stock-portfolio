@@ -39,7 +39,7 @@ Open-source stock portfolio tracker for stocks, ETFs, and crypto. Real-time pric
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/your-username/stock-portfolio.git
+git clone https://github.com/KarlMeierMattern/stock-portfolio.git
 cd stock-portfolio
 npm install
 ```
